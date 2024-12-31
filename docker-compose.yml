@@ -19,7 +19,7 @@ services:
     ports:
       - 8888:8888
     volumes:
-      - .:/home/jovyan/work
+      - scripts:/home/jovyan/work
   
   pgadmin:
     image: dpage/pgadmin4
