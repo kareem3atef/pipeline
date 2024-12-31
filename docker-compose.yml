@@ -1,0 +1,35 @@
+# Docker Compose version v2.32.1
+
+services:
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: secret
+      POSTGRES_USER: postgres
+      POSTGRES_DB: nytaxi
+    volumes:
+      - nytaxi:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+  
+  notebook:
+    build: .
+    restart: always
+    ports:
+      - 8888:8888
+    volumes:
+      - .:/home/jovyan/work
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    ports:
+      - 3000:80
+    environment:
+       PGADMIN_DEFAULT_EMAIL: ka@ka.com
+       PGADMIN_DEFAULT_PASSWORD: secret
+
+
+volumes:
+  nytaxi:
