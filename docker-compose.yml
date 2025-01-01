@@ -10,8 +10,8 @@ services:
       POSTGRES_DB: nytaxi
     volumes:
       - nytaxi:/var/lib/postgresql/data
-    ports:
-      - 5432:5432
+    #ports:
+    #  - :5432 I don't want to connect to the database engine from my localhost
   
   notebook:
     build: .
@@ -19,7 +19,7 @@ services:
     ports:
       - 8888:8888
     volumes:
-      - scripts:/home/jovyan/work
+      - ./scripts:/home/jovyan/work
   
   pgadmin:
     image: dpage/pgadmin4
